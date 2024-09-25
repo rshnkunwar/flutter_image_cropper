@@ -357,6 +357,14 @@ class IOSUiSettings extends PlatformUiSettings {
   /// controls the list of aspect ratios in the crop menu view.
   final List<CropAspectRatioPresetData> aspectRatioPresets;
 
+  /// Color for the 'Done' button.
+  /// Setting this will override the Default which is some sort of yellow.
+  final Color? doneButtonColor;
+
+  /// Color for the 'Cancel' button.
+  /// Setting this will override the Default which is some sort of blue.
+  final Color? cancelButtonColor;
+
   IOSUiSettings({
     this.minimumAspectRatio,
     this.rectX,
@@ -377,6 +385,8 @@ class IOSUiSettings extends PlatformUiSettings {
     this.title,
     this.doneButtonTitle,
     this.cancelButtonTitle,
+    this.doneButtonColor,
+    this.cancelButtonColor,
     this.cropStyle = CropStyle.rectangle,
     this.aspectRatioPresets = const [
       CropAspectRatioPreset.original,
@@ -411,6 +421,8 @@ class IOSUiSettings extends PlatformUiSettings {
         'ios.title': this.title,
         'ios.done_button_title': this.doneButtonTitle,
         'ios.cancel_button_title': this.cancelButtonTitle,
+        'ios.done_button_color': int32(this.doneButtonColor?.value),
+        'ios.cancel_button_color': int32(this.cancelButtonColor?.value),
         'ios.crop_style': this.cropStyle.name,
         'ios.aspect_ratio_presets': aspectRatioPresets
             .map<Map<String, dynamic>>((item) => {
